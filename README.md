@@ -10,13 +10,14 @@
 4. [Usage](#usage)
    - [Using the Executable](#using-the-executable)
    - [Using as a Python Package](#using-as-a-python-package)
-5. [Development](#development)
+5. [Regex Features](#regex-features)
+6. [Development](#development)
    - [Setting Up the Development Environment](#setting-up-the-development-environment)
    - [Running Tests](#running-tests)
    - [Building the Executable](#building-the-executable)
-6. [Contributing](#contributing)
-7. [License](#license)
-8. [Contact](#contact)
+7. [Contributing](#contributing)
+8. [License](#license)
+9. [Contact](#contact)
 
 ## Introduction
 
@@ -27,6 +28,7 @@ Regex Engine is a lightweight, efficient regular expression matching tool. It pr
 - Basic regex pattern matching
 - Support for character classes, quantifiers, and groups
 - Command-line interface for quick regex operations
+- File processing capabilities
 - Python package for integration into other projects
 
 ## Getting Started
@@ -56,19 +58,35 @@ pip install git+https://github.com/Chayan199916/regex-engine.git
 
 ### Using the Executable
 
-To use the regex engine from the command line:
+The executable supports two modes of operation:
 
-```bash
-regex-engine.exe "pattern" "text"
-```
+1. Single input mode:
 
-For example:
+   ```bash
+   regex-engine.exe -s <pattern> <input_string>
+   ```
 
-```bash
-regex-engine.exe "a\db" "a123b"
-```
+   Example:
 
-This will output `Match found` if the pattern matches the text, and `No match` otherwise.
+   ```bash
+   regex-engine.exe -s "a\db" "a123b"
+   ```
+
+   This will output `Match found` if the pattern matches the text, and `No match` otherwise.
+
+2. File processing mode:
+
+   ```bash
+   regex-engine.exe -f <pattern> <input_file> <output_file>
+   ```
+
+   Example:
+
+   ```bash
+   regex-engine.exe -f "a\db" input.txt output.txt
+   ```
+
+   This will process each line in `input.txt`, matching it against the pattern, and write the results to `output.txt`.
 
 ### Using as a Python Package
 
@@ -78,6 +96,22 @@ from regex_engine import match_pattern
 result = match_pattern("a\db", "a123b")
 print(result)  # Output: Match found
 ```
+
+## Regex Features
+
+Our regex engine supports the following features:
+
+1. Basic character matching
+2. Digit matching: `\d`
+3. Word character matching: `\w`
+4. Any character matching: `.`
+5. Start of string anchor: `^`
+6. End of string anchor: `$`
+7. Positive character groups: `[abc]`
+8. Negative character groups: `[^abc]`
+9. One or more quantifier: `+`
+10. Zero or one quantifier: `?`
+11. Grouping and alternation: `(a|b)`
 
 ## Development
 
@@ -132,4 +166,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE) file for details.
